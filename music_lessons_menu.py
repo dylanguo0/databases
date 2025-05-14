@@ -48,7 +48,7 @@ while menu_choice != 'EXIT':
                         '2: All students sorted in alphabetical order by surname then first name\n'
                         '3: All music lessons in order from earliest to latest\n'
                         '4: Find all students who have a lesson on a certain day, ordered from earliest time to latest time\n'
-                        '5: All students who\'s learning the piano\n'
+                        '5: Find all students learning a certain instrument\n'
                         '6: All male students\n'
                         '7: Parents who owe the most money\n'
                         '8: Students sorted from oldest to youngest\n'
@@ -67,7 +67,8 @@ while menu_choice != 'EXIT':
         day = input('Which day to you want to see: ').title()
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, instrument, lesson_time", "day = ? ORDER BY lesson_time", day)
     elif menu_choice == '5':
-        print_query('piano')
+        instrument = input('Which instrument to you want to see: ').title()
+        print_parameter_query("first_name, school_code, day, parent_first_name, parent_phone, lesson_time", "instrument = ? ORDER BY student_info.day_id, lesson_time", instrument)
     elif menu_choice == '6':
         print_query('male')
     elif menu_choice == '7':
