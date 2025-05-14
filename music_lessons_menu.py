@@ -49,7 +49,7 @@ while menu_choice != 'EXIT':
                         '3: All music lessons in order from earliest to latest\n'
                         '4: Find all students who have a lesson on a certain day, ordered from earliest time to latest time\n'
                         '5: Find all students learning a certain instrument\n'
-                        '6: All male students\n'
+                        '6: Find all students of a certain gender\n'
                         '7: Parents who owe the most money\n'
                         '8: Students sorted from oldest to youngest\n'
                         '9: All students born in 2008\n'
@@ -68,9 +68,10 @@ while menu_choice != 'EXIT':
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, instrument, lesson_time", "day = ? ORDER BY lesson_time", day)
     elif menu_choice == '5':
         instrument = input('Which instrument to you want to see: ').title()
-        print_parameter_query("first_name, school_code, day, parent_first_name, parent_phone, lesson_time", "instrument = ? ORDER BY student_info.day_id, lesson_time", instrument)
+        print_parameter_query("first_name, school_code, parent_first_name, parent_phone, day, lesson_time", "instrument = ? ORDER BY student_info.day_id, lesson_time", instrument)
     elif menu_choice == '6':
-        print_query('male')
+        gender = input('Which gender to you want to see: ').title()
+        print_parameter_query("surname, first_name, school_code, instrument, parent_first_name, parent_phone, day, lesson_time", "gender = ? ORDER BY student_info.day_id, lesson_time", gender)
     elif menu_choice == '7':
         print_query('most_owed')
     elif menu_choice == '8':
