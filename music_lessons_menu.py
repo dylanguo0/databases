@@ -5,6 +5,13 @@ from tabulate import tabulate
 # This is the filename of the database to be used
 DB_NAME = 'music_lessons.db'
 
+# This is the SQL to connect to all the tables in the database
+TABLES = (" music_lessons "
+            "LEFT JOIN genders ON student_info.gender_id = genders.gender_id "
+            "LEFT JOIN instruments ON student_info.instrument_id = instruments.instrument_id "
+            "LEFT JOIN schools ON student_info.school_id = schools.school_id "
+            "LEFT JOIN days ON student_info.day_id = days.day_id ")
+
 def print_query(view_name:str):
     ''' Prints the specified view from the database in a table '''
     # Set up the connection to the database
