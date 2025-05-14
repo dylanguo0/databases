@@ -38,4 +38,25 @@ while menu_choice != 'EXIT':
                         '10: All students born in 2008\n'
                         'EXIT: To exit the menu\n\n'
                         'Type option here: ')
+    print('')
     menu_choice = menu_choice.upper()
+    if menu_choice == '1':
+        print_query('all_data')
+    elif menu_choice == '2':
+        print_query('alphabetical_names')
+    elif menu_choice == '3':
+        print_query('earliest_to_latest')
+    elif menu_choice == '4':
+        print_query('monday')
+    elif menu_choice == '5':
+        print_query('wednesday')
+    elif menu_choice == '6':
+        print_query('piano')
+    elif menu_choice == '7':
+        print_query('male')
+    elif menu_choice == '8':
+        print_query('most_owed')
+    elif menu_choice == '9':
+        print_query('oldest_to_youngest')
+    elif menu_choice == '10':
+        print_query('2008s')
