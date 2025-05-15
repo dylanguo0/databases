@@ -53,6 +53,7 @@ while menu_choice != 'EXIT':
                         '7: Parents who owe the most money\n'
                         '8: Students sorted from oldest to youngest\n'
                         '9: All students born in 2008\n'
+                        '10: All students who are siblings\n'
                         'EXIT: To exit the menu\n\n'
                         'Type option here: ')
     print('')
@@ -78,3 +79,5 @@ while menu_choice != 'EXIT':
         print_query('oldest_to_youngest')
     elif menu_choice == '9':
         print_query('2008s')
+    elif menu_choice == '10':
+        print_query('siblings')
