@@ -15,7 +15,6 @@ TABLES = (" student_info "
 
 def print_parameter_query(fields:str, where:str, parameter):
     """ Prints the results for a parameter query in tabular form. """
-    print('')
     db = sqlite3.connect(DB_NAME)
     cursor = db.cursor()
     sql = ("SELECT " + fields + " FROM " + TABLES + " WHERE " + where)
@@ -65,13 +64,22 @@ while choice != 'EXIT':
     elif choice == 'All music lessons in order from earliest to latest':
         print_query('earliest_to_latest')
     elif choice == 'Find all students who have a lesson on a certain day, ordered from earliest time to latest time':
-        day = input('Which day to you want to see: ').title()
+        msg = "Which day do you want to see?"
+        title = "Pick a day"
+        choices = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        day = buttonbox(msg, title, choices)
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, instrument, lesson_time", "day = ? ORDER BY lesson_time", day)
     elif choice == 'Find all students learning a certain instrument':
-        instrument = input('Which instrument to you want to see: ').title()
+        msg = "Which instrument do you want to see?"
+        title = "Pick an instrument"
+        choices = ["Piano", "Guitar", "Drums"]
+        instrument = buttonbox(msg, title, choices)
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, day, lesson_time", "instrument = ? ORDER BY student_info.day_id, lesson_time", instrument)
     elif choice == 'Find all students of a certain gender':
-        gender = input('Which gender to you want to see: ').title()
+        msg = "Which gender do you want to see?"
+        title = "Pick a gender"
+        choices = ["Male", "Female", "Not specified"]
+        gender = buttonbox(msg, title, choices)
         print_parameter_query("surname, first_name, school_code, instrument, parent_first_name, parent_phone, day, lesson_time", "gender = ? ORDER BY student_info.day_id, lesson_time", gender)
     elif choice == 'Parents who owe the most money':
         print_query('most_owed')
