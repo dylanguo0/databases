@@ -1,6 +1,7 @@
 # Import the libraries to connect to the database and present the information in tables
 import sqlite3
 from tabulate import tabulate
+from easygui import *
 
 # This is the filename of the database to be used
 DB_NAME = 'music_lessons.db'
@@ -40,44 +41,43 @@ def print_query(view_name:str):
     print(tabulate(results,headings))
     db.close()
 
-menu_choice = ''
-print('Welcome to the music lessons database')
-while menu_choice != 'EXIT':
-    menu_choice = input('\nType the number for the information you want:\n'
-                        '1: All music lessons\n'
-                        '2: All students sorted in alphabetical order by surname then first name\n'
-                        '3: All music lessons in order from earliest to latest\n'
-                        '4: Find all students who have a lesson on a certain day, ordered from earliest time to latest time\n'
-                        '5: Find all students learning a certain instrument\n'
-                        '6: Find all students of a certain gender\n'
-                        '7: Parents who owe the most money\n'
-                        '8: Students sorted from oldest to youngest\n'
-                        '9: All students born in 2008\n'
-                        '10: All students who are siblings\n'
-                        'EXIT: To exit the menu\n\n'
-                        'Type option here: ')
+choice = ''
+while choice != 'EXIT':
+    msg = "What information do you want?"
+    title = "Welcome to the music lessons database"
+    choices = ["All music lessons", 
+                "All students sorted in alphabetical order by surname then first name", 
+                "All music lessons in order from earliest to latest", 
+                "Find all students who have a lesson on a certain day, ordered from earliest time to latest time", 
+                "Find all students learning a certain instrument", 
+                "Find all students of a certain gender",
+                "Parents who owe the most money", 
+                "Students sorted from oldest to youngest", 
+                "All students born in 2008",
+                "All students who are siblings",
+                "EXIT"]
+    choice = choicebox(msg, title, choices)
     print('')
-    menu_choice = menu_choice.upper()
-    if menu_choice == '1':
+    if choice == 'All music lessons':
         print_query('all_data')
-    elif menu_choice == '2':
+    elif choice == 'All students sorted in alphabetical order by surname then first name':
         print_query('alphabetical_names')
-    elif menu_choice == '3':
+    elif choice == 'All music lessons in order from earliest to latest':
         print_query('earliest_to_latest')
-    elif menu_choice == '4':
+    elif choice == 'Find all students who have a lesson on a certain day, ordered from earliest time to latest time':
         day = input('Which day to you want to see: ').title()
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, instrument, lesson_time", "day = ? ORDER BY lesson_time", day)
-    elif menu_choice == '5':
+    elif choice == 'Find all students learning a certain instrument':
         instrument = input('Which instrument to you want to see: ').title()
         print_parameter_query("first_name, school_code, parent_first_name, parent_phone, day, lesson_time", "instrument = ? ORDER BY student_info.day_id, lesson_time", instrument)
-    elif menu_choice == '6':
+    elif choice == 'Find all students of a certain gender':
         gender = input('Which gender to you want to see: ').title()
         print_parameter_query("surname, first_name, school_code, instrument, parent_first_name, parent_phone, day, lesson_time", "gender = ? ORDER BY student_info.day_id, lesson_time", gender)
-    elif menu_choice == '7':
+    elif choice == 'Parents who owe the most money':
         print_query('most_owed')
-    elif menu_choice == '8':
+    elif choice == 'Students sorted from oldest to youngest':
         print_query('oldest_to_youngest')
-    elif menu_choice == '9':
+    elif choice == 'All students born in 2008':
         print_query('2008s')
-    elif menu_choice == '10':
+    elif choice == 'All students who are siblings':
         print_query('siblings')
