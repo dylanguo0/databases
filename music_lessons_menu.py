@@ -40,8 +40,7 @@ def print_query(view_name:str):
     print(tabulate(results,headings))
     db.close()
 
-choice = ''
-while choice != 'EXIT':
+while True:
     msg = "What information do you want?"
     title = "Welcome to the music lessons database"
     choices = ["All music lessons", 
@@ -53,8 +52,7 @@ while choice != 'EXIT':
                 "Parents who owe the most money", 
                 "Students sorted from oldest to youngest", 
                 "All students born in 2008",
-                "All students who are siblings",
-                "EXIT"]
+                "All students who are siblings"]
     choice = choicebox(msg, title, choices)
     print('')
     if choice == 'All music lessons':
@@ -89,3 +87,5 @@ while choice != 'EXIT':
         print_query('2008s')
     elif choice == 'All students who are siblings':
         print_query('siblings')
+    else:
+        break
